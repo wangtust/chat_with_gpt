@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <style>
+        .chat-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+        .chat-box {
+            width: 60%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box">
+            <h1>Chat with GPT</h1>
+            <form id="chat-form" method="post" onsubmit="handleFormSubmit(event)">
+                <label for="user_input">Your Message:</label>
+                <textarea id="user_input" name="user_input" required></textarea>
+                <br>
+                <button type="submit">Send</button>
+            </form>
+            {% if response %}
+                <h2>GPT Response:</h2>
+                <p>{{ response }}</p>
+            {% endif %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('chat-form');
+            const userInput = document.getElementById('user_input');
+            form.submit();
+            userInput.focus();
+        }
+
+        document.getElementById('user_input').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                document.getElementById('chat-form').submit();
+                setTimeout(() => {
+                    document.getElementById('user_input').focus();
+                }, 0);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Set API</title>
+    <style>
+        .api-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .api-box {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .api-box form {
+            display: flex;
+            flex-direction: column;
+        }
+        .api-box label, .api-box input, .api-box button {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="api-container">
+        <div class="api-box">
+            <h1>Set API URL and Key</h1>
+            <form method="post">
+                <label for="api_url">API URL:</label>
+                <input type="text" id="api_url" name="api_url" value="https://api.chatanywhere.tech/v1/chat/completions" required>
+                <label for="api_key">API Key:</label>
+                <input type="text" id="api_key" name="api_key" required>
+                <button type="submit">Save</button>
+            </form>
+            <a href="https://api.chatanywhere.org/v1/oauth/free/render" target="_blank">Get API Key</a>
+            <br>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
